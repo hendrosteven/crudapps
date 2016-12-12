@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+        <title>CandidateList Apps</title>
+        <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/css/bootstrap.min.css"
+              th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>        
+        <link href="https://cdn.jsdelivr.net/webjars/font-awesome/4.6.3/css/font-awesome.min.css"
+              th:href="@{/webjars/font-awesome/4.6.3/css/font-awesome.min.css}" rel="stylesheet" media="screen"/>   
+        <link href="css/app.css" th:href="@{/css/app.css}" rel="stylesheet" media="screen"/>
+        <script src="https://ingress-api.quixxi.com/CDN/quixxianalytics.min.js"></script>
+        <script>
+            Quixxi.init("954a850a-d758-4633-9ad6-3e04386d4019", "9JYZOqkhusebFgvz6fOm", true)
+        </script>
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">CandidateAPP<small> v1.0</small></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Readme</a></li>
+                                    <li><a href="#">Developer</a></li>
+                                    <li><a href="#">Source Code</a></li>                                        
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resource <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-header">Backend Stack</li>
+                                    <li><a href="https://projects.spring.io/spring-boot/" target="_blank">Springboot</a></li>
+                                    <li><a href="https://docs.oracle.com/javaee/6/tutorial/doc/bnbpz.html" target="_blank">JPA</a></li>
+                                    <li><a href="http://projects.spring.io/spring-data-jpa/" target="_blank">Spring Data JPA</a></li>
+                                    <li><a href="https://github.com/brettwooldridge/HikariCP" target="_blank">Hikari Connection Pool</a></li>
+                                    <li><a href="https://www.mysql.com/" target="_blank">MySQL Database</a></li>
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Frontend Stack</li>
+                                    <li><a href="https://angularjs.org/" target="_blank">AngularJS</a></li>
+                                    <li><a href="http://www.webjars.org/" target="_blank">Webjars</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </div>
+        </nav>
+
+        <div class="row banner">
+            <div class="container">
+                <div class="col-lg-12">
+                    <h1>Candidate List</h1>
+                    <p>This App is a demonstration of Springboot Rest API and AngularJS</p>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="container" ng-app='myApp' ng-controller="CandidateController">
+            <div class="row">
+                <div class="col-lg-6">                   
+                    <input type="text" ng-model="search" class="form-control" placeholder="Search Candidate..." />                         
+                </div>
+                <div class="col-lg-6">
+                    <div class="btn-group pull-right hidden-xs">
+                        <a ng-click="setup()" title="Refresh Table">
+                            <button class="btn btn-default" id="edit">
+                                <i class="glyphicon glyphicon-refresh"></i> Refresh
+                            </button>
+                        </a>
+                        <a ng-click="showForm()" title="Input New Candidate">
+                            <button class="btn btn-default" id="edit">
+                                <i class="glyphicon glyphicon-plus"></i> Input&nbsp;
+                            </button>              
+                        </a>
+                    </div>
+                    <div class="btn-group hidden-lg hidden-md">
+                        <a ng-click="setup()" title="Refresh Table">
+                            <button class="btn btn-default" id="edit">
+                                <i class="glyphicon glyphicon-refresh"></i> Refresh
+                            </button>
+                        </a>
+                        <a ng-click="showForm()" title="Input New Candidate">
+                            <button class="btn btn-default" id="edit">
+                                <i class="glyphicon glyphicon-plus"></i> Input&nbsp;
+                            </button>              
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-12">   
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered" id="tblCandidate">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Surename</th>
+                                            <th>Position</th>    
+                                            <th class="text-center" width="100px">Curriculum</th> 
+                                            <th class="text-center" width="100px">Action Requested</th>
+                                        </tr>
+                                    </thead> 
+                                    <tbody ng-init="setup()">
+                                        <tr ng-repeat="candidate in candidates| filter:search">                                
+                                            <td>{{ candidate.name}}</td>
+                                            <td>{{ candidate.sureName}}</td>                                
+                                            <td>{{ candidate.position.positionName}}</td>
+                                            <td class="text-center">
+                                                <a href="/api/download/{{ candidate.curriculum.id}}" title="View or Download">  
+                                                    <button class="btn btn-success btn-sm" id="btn-view">
+                                                        <i class="glyphicon glyphicon-eye-open"></i> 
+                                                    </button>
+                                                </a>
+                                            </td>
+                                            <td class="text-center">
+                                                <div id="transform-buttons" class="btn-group btn-default">                                            
+                                                    <a ng-click="editCandidate(candidate.id)" title="Edit this Candidate">
+                                                        <button class="btn btn-info btn-sm" id="edit">
+                                                            <i class="glyphicon glyphicon-edit"></i> 
+                                                        </button>
+                                                    </a>
+                                                    <a href="#" ng-click="deleteCandidate(candidate.id)" title="Delete this Candidate">
+                                                        <button class="btn btn-danger btn-sm" id="remove">
+                                                            <i class="glyphicon glyphicon-remove"></i>
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>                    
+                    <!-- modal for for input new candidate -->
+                    <div id="modal-form-candidate" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h3 class="modal-title" id="form-title">Add New Candidate</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <form name="candidateForm">
+                                        <div class="alert alert-danger alert-dismissable hide" id="errorMsg">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            <h4><i class="icon fa fa-ban"></i> Error(s)</h4>
+                                            <ul id="errors"></ul>
+                                        </div>
+                                        <div class="alert alert-success alert-dismissable hide" id="infoMsg">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            <h4><i class="icon fa fa-info-circle"></i> Information</h4>
+                                            <ul id="infos"></ul>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input pattern="^[a-zA-Z\s]*$" ng-pattern-restrict="^[a-zA-Z\s]*$" type="text" class="form-control" id="name" name="name" ng-model="name" placeholder="Input Name" required="true" ng-minlength="2" ng-maxlength="100"/>
+                                            <p ng-show="candidateForm.name.$error.required" class="text-error">Name is required.</p>
+                                            <p ng-show="candidateForm.name.$error.minlength" class="text-error">Name is too short.</p>
+                                            <p ng-show="candidateForm.name.$error.maxlength" class="text-error">Name is too long.</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="surename">Surename</label>
+                                            <input pattern="^[a-zA-Z\s]*$" ng-pattern-restrict="^[a-zA-Z\s]*$" type="text" class="form-control" name="surename" id="surename" ng-model="sureName" placeholder="Input Surename" required="true" ng-minlength="2" ng-maxlength="200"/>
+                                            <p ng-show="candidateForm.surename.$error.required" class="text-error">Surename is required.</p>
+                                            <p ng-show="candidateForm.surename.$error.minlength" class="text-error">Surename is too short.</p>
+                                            <p ng-show="candidateForm.surename.$error.maxlength" class="text-error">Surename is too long.</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="position">Position</label>
+                                            <select class="form-control" name="position" id="position" ng-model="position" ng-options="position.positionName for position in positions track by position.id" required="true">
+                                                <option value="">--Select Position--</option>                                           
+                                            </select>
+                                            <p ng-show="candidateForm.position.$error.required" class="text-error">Position is required.</p>
+                                        </div>  
+
+                                        <div class="form-group">
+                                            <label for="curriculum">Curriculum</label>                                        
+                                            <input type="file" name="curriculum" ng-model="curriculum" accept=".doc, .pdf" maxsize="2000" required="true" base-sixty-four-input="" do-not-parse-if-oversize="true"/>
+                                            <p ng-show="candidateForm.curriculum.$error.maxsize" class="text-error">Files must not exceed 2 Mb</p> 
+                                            <p ng-show="candidateForm.curriculum.$error.required" class="text-error">Curriculum is required.</p>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" id="btn-save" ng-click="saveCandidate()">Save</button>
+                                    <button type="button" class="btn btn-default" id="btn-update" ng-click="updateCandidate()">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <footer>
+            <hr/>
+            <p class="text-center">Copyright &copy; 2016 <a href="https://github.com/hendrosteven" target="_blank">Hendro Steven</a></p>
+            <br/>
+        </footer>
+        <script src="http://cdn.jsdelivr.net/webjars/angularjs/1.3.8/angular.min.js" th:src="@{/webjars/angularjs/1.3.8/angular.min.js}"></script>
+        <script src="http://cdn.jsdelivr.net/webjars/jquery/3.1.0/jquery.min.js" th:src="@{/webjars/jquery/3.1.0/jquery.min.js}"></script>
+        <script src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/bootstrap.min.js" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+        <script type="text/javascript" src="js/angular-base64-upload.min.js" th:src="@{/js/angular-base64-upload.min.js}"></script>     
+        <script type="text/javascript" src="js/ng-pattern-restrict.min.js" th:src="@{/js/ng-pattern-restrict.min.js}"></script>        
+        <script type="text/javascript" src="js/controller.js" th:src="@{/js/controller.js}"></script>     
+        <script type="text/javascript" src="js/services.js" th:src="@{/js/services.js}"></script>        
+    </body>
+</html>
