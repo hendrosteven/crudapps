@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 
 /**
- *
+ * This class represent the Curriculum Vitae file. The uploaded file are stored as base64 String.
  * @author Hendro Steven
  */
 @Entity
@@ -25,7 +25,10 @@ public class Curriculum implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
+    /**
+     * Maximum file size is limited only 3 mb
+     */
     @Column(nullable = false)
     @Max(value = 3000000, message = "error.curriculum.size")
     private int filesize;

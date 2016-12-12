@@ -6,7 +6,7 @@
 package com.hendro.dto;
 
 /**
- *
+ * Message type enumeration
  * @author Hendro Steven
  */
 public enum MessageType {

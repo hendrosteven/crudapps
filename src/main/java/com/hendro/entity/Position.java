@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- *
+ * This class represent the position that available
  * @author Hendro Steven
  */
 @Entity

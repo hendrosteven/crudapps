@@ -6,7 +6,7 @@
 package com.hendro.dto;
 
 /**
- *
+ * This class is a DTO object that used for the response data to the client
  * @author Hendro Steven
  */
 public class ResponseObject {

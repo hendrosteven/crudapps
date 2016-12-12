@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
+ * Controller for accessing position data
  * @author Hendro Steven
  */
 @RestController
@@ -25,6 +25,10 @@ public class PositionController {
     @Autowired
     private PositionService positionService;
 
+    /**
+     * End point for get all position
+     * @return 
+     */
     @RequestMapping(method = RequestMethod.GET)
     public Callable<ResponseObject> findAll() {
         return new Callable<ResponseObject>() {
@@ -35,6 +39,11 @@ public class PositionController {
         };
     }
 
+    /**
+     * End point for get position by Id
+     * @param id
+     * @return 
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public Callable<ResponseObject> findById(@PathVariable("id") Long id) {
         return new Callable<ResponseObject>() {

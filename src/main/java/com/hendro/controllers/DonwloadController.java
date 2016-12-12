@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
+ * This controller is used for downloading the Curriculum File
  * @author Hendro Steven
  */
 @RestController
@@ -27,6 +27,12 @@ public class DonwloadController {
     @Autowired
     private CurriculumService curriculumService;
 
+    /**
+     * Decode the encoding file String and return it as original file
+     * @param id
+     * @param response
+     * @throws IOException 
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public void download(@PathVariable("id") Long id, HttpServletResponse response) throws IOException {
         Curriculum curriculum = curriculumService.findById(id);

@@ -23,6 +23,7 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 /**
+ * This class represent the Candidate
  *
  * @author Hendro Steven
  */
@@ -34,23 +35,37 @@ public class Candidate implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * Field name validation using bean validation : can't be null, min length
+     * 2, max length 100, only containing letters
+     */
     @Column(length = 100, nullable = false)
     @NotNull(message = "error.name.notnull")
     @Size(min = 2, max = 100, message = "error.name.size")
     @Pattern(regexp = "^\\pL+[\\pL\\pZ\\pP]{0,}$", message = "error.name.letters")
     private String name;
 
+    /**
+     * Field surename validation using bean validation : can't be null, min
+     * length 2, max length 200, only containing letters
+     */
     @Column(length = 200, nullable = false)
     @NotNull(message = "error.surename.notnull")
     @Size(min = 2, max = 200, message = "error.surename.size")
     @Pattern(regexp = "^\\pL+[\\pL\\pZ\\pP]{0,}$", message = "error.surename.letters")
     private String sureName;
 
+    /**
+     * Field position validation using bean validation : can't be null
+     */
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(nullable = false)
     @NotNull(message = "error.position.notnull")
     private Position position;
 
+    /**
+     * Field curriculum validation using bean validation : can't be null
+     */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
     @NotNull(message = "error.curriculum.notnull")

@@ -9,8 +9,8 @@ import com.hendro.entity.Curriculum;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
- *
- * @author Hendro Steven
+ *  Extends Spring framework repository class, so by default this class will have all CRUD method
+ *  @author Hendro Steven
  */
 public interface CurriculumRepo extends PagingAndSortingRepository<Curriculum, Long> {
 

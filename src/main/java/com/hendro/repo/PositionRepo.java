@@ -9,7 +9,7 @@ import com.hendro.entity.Position;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
- *
+ * Extends Spring framework repository class, so by default this class will have all CRUD method
  * @author Hendro Steven
  */
 public interface PositionRepo extends PagingAndSortingRepository<Position, Long>{

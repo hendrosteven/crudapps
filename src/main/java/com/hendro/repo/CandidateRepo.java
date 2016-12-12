@@ -9,7 +9,7 @@ import com.hendro.entity.Candidate;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
- *
+ * Extends Spring framework repository class, so by default this class will have all CRUD method
  * @author Hendro Steven
  */
 public interface CandidateRepo extends PagingAndSortingRepository<Candidate, Long> {

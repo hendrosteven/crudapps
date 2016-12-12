@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
+ * This Service class is a business object class for manipulate Position object
  *
  * @author Hendro Steven
  */
@@ -26,6 +27,12 @@ public class PositionService {
     @Autowired
     private PositionRepo positionRepo;
 
+    /**
+     * Get a Position by Id
+     *
+     * @param id
+     * @return
+     */
     public ResponseObject findById(Long id) {
         Position position = positionRepo.findOne(id);
         if (position != null) {
@@ -35,6 +42,11 @@ public class PositionService {
         }
     }
 
+    /**
+     * Get all position
+     *
+     * @return
+     */
     public ResponseObject findAll() {
         Collection<Position> positions = IteratorUtils.toList(positionRepo.findAll().iterator());
         return new ResponseObject(MessageType.SUCCESS, "Find All Position", positions);

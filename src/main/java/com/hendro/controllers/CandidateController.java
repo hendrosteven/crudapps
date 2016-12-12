@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * Controller class for manipulate Candidate
  *
  * @author Hendro Steven
  */
@@ -28,6 +29,11 @@ public class CandidateController {
     @Autowired
     private CandidateService candidateService;
 
+    /**
+     * End point to get all candidate
+     *
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     public Callable<ResponseObject> findAll() {
         return new Callable<ResponseObject>() {
@@ -38,6 +44,11 @@ public class CandidateController {
         };
     }
 
+    /**
+     * End point to get candidate by Id
+     *
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public Callable<ResponseObject> findById(@PathVariable("id") Long id) {
         return new Callable<ResponseObject>() {
@@ -48,16 +59,31 @@ public class CandidateController {
         };
     }
 
+    /**
+     * End point to save a candidate
+     * @param candidate
+     * @return 
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseObject insert(@Validated @RequestBody Candidate candidate) {
         return candidateService.insert(candidate);
     }
 
+    /**
+     * End point to delete a candidate
+     * @param id
+     * @return 
+     */
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseObject delete(@PathVariable("id") Long id) {
         return candidateService.delete(id);
     }
 
+    /**
+     * End point to update a candidate
+     * @param candidate
+     * @return 
+     */
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseObject update(@Validated @RequestBody Candidate candidate) {
         return candidateService.update(candidate);

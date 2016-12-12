@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- *
+ *  This Controller is a validation handler for all Controller
  * @author Hendro Steven
  */
 @ControllerAdvice
@@ -30,6 +30,11 @@ public class ControllerValidationHandler {
     @Autowired
     private MessageSource msgSource;
 
+    /**
+     * If validation error occur then get the resource message and return as error message type
+     * @param ex
+     * @return 
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
