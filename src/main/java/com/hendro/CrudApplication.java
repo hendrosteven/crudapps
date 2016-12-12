@@ -14,6 +14,7 @@ public class CrudApplication {//extends SpringBootServletInitializer {
 //    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 //        return application.sources(CrudApplication.class);
 //    }
+
     public static void main(String[] args) {
         SpringApplication.run(CrudApplication.class, args);
     }

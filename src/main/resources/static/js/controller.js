@@ -5,7 +5,7 @@
 //load modul base64 for converting CV file to base64 encoding 
 var app = angular.module('myApp', ['naif.base64', 'ngPatternRestrict']);
 
-app.controller('CandidateController', function ($scope, $window, CandidateService, PositionService) {
+app.controller('CandidateController', function ($scope, CandidateService, PositionService) {
 
     //load allcandidate and allposition
     $scope.setup = function () {
@@ -110,12 +110,3 @@ app.controller('CandidateController', function ($scope, $window, CandidateServic
     };
 });
 
-
-//(function puixxiPush(data) {
-//    Quixxi.q.push(['InputCandidate', {
-//            "event_category": "Candidate",
-//            "event_value": data.messages,
-//            "event_detail": "Input New Candidate",
-//            "event_object": data.payload
-//        }]);
-//})();
