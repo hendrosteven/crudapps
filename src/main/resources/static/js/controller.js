@@ -3,7 +3,7 @@
  */
 
 //load modul base64 for converting CV file to base64 encoding 
-var app = angular.module('myApp', ['naif.base64', 'ngPatternRestrict']);
+var app = angular.module('myApp', ['naif.base64', 'ngPatternRestrict','angular-loading-bar']);
 
 app.controller('CandidateController', function ($scope, CandidateService, PositionService) {
 
