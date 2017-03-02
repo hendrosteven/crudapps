@@ -1,14 +1,16 @@
 package com.hendro;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @SpringBootApplication
-//@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class}) //uncoment this to get tomcat complete error stack
+@EnableAutoConfiguration(exclude = {ErrorMvcAutoConfiguration.class}) //uncoment this to get tomcat complete error stack
 public class CrudApplication extends SpringBootServletInitializer {
 
 // uncoment this for tomcat deployment
