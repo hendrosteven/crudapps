@@ -51,12 +51,12 @@ app.controller('CandidateController', function ($scope, CandidateService, Positi
                     $('#infoMsg').removeClass('hide');
                     
                     //push to Quixxi
-                    Quixxi.q.push(['InputCandidate', {
-                            "event_category": "Candidate",
-                            "event_value": response.messages,
-                            "event_detail": "Input New Candidate",
-                            "event_object": response.payload
-                        }]);
+//                    Quixxi.q.push(['InputCandidate', {
+//                            "event_category": "Candidate",
+//                            "event_value": response.messages,
+//                            "event_detail": "Input New Candidate",
+//                            "event_object": response.payload
+//                        }]);
                 },
                 function (response) {
                     console.log(response);
